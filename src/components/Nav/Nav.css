@@ -1,0 +1,135 @@
+#NavsContainer-Nav {
+  width: 5rem;
+  height: 100vh;
+  position: fixed;
+
+  left: 0;
+  top: 1.5rem;
+  
+  display: flex;
+  flex-flow: column;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-around;
+  
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 1000;  
+  padding: 0.2rem;
+}
+
+#randomLines {
+  top: 0;
+  z-index: -100;
+}
+
+#nav-top-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 100vw;
+  margin: 0;
+  background-color: rgba(255, 196, 196, 0.8);
+}
+
+#showNav-button {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate( 50%, -50% );
+  width: auto;
+  color: black;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.navLink-Nav {
+  text-decoration: none; 
+  font-size: 0.8rem;
+  max-width: 5rem;
+  font-weight: bold;
+  word-wrap: break-word;
+  font-stretch: expanded;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.1rem;
+}
+
+.navLinkActive-Nav {
+  color: rgb(255, 40, 25);
+  text-decoration: none;
+  background-color: rgb(255, 177, 177);
+
+}
+
+#breadCrumbs {
+  position: absolute;
+  width: auto;
+  top: 50%;
+  left: 2%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+}
+
+#nav-closeButton {
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  border-radius: 30%;
+  padding: 0.5rem;
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  border: solid 1px black;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.breadcrumb-link {
+  margin: 0;
+  display: inline;
+  text-decoration: none;
+  color: rgb(101, 64, 140);
+}
+
+.bc-block{
+  color: black;
+  padding: 0.1rem;
+}
+
+.bc-block:hover {
+  background-color: rgb(255, 114, 82); 
+}
+
+#showMap-button {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  margin: auto 0;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.navLink-Nav:hover {
+  color: rgb(62, 163, 128);
+  background-color: rgb(240, 220, 250);
+}
+
+/* scale for smaller windows and tablets */
+@media (min-width: 600px) and (max-width: 1199px) {
+ 
+}
+
+/* scale for laptops/PC and large screens */
+@media (min-width: 1200px) {
+ 
+
+  
+}

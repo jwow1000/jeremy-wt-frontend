@@ -1,0 +1,32 @@
+#container-Layout {
+  position: relative;
+  padding: 0 0 0 0;
+  width: 100vw;
+  
+}
+
+#body-Layout {
+  position: absolute;
+  margin: 3rem 0 0 0;
+  margin-left: 0;
+  overflow: hidden;
+  z-index: 0;
+  transition: margin-left 1s ease; 
+}
+
+
+/* scale for smaller windows and tablets */
+@media (min-width: 600px) and (max-width: 1199px) {
+  #container-Layout {
+  }
+
+  #body-Layout { 
+  }
+}
+
+/* scale for laptops/PC and large screens */
+@media (min-width: 1200px) {
+  #body-Layout { 
+  }
+
+}

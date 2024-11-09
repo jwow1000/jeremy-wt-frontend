@@ -1,4 +1,4 @@
-import { useScrollPosition, useWindowSize } from "../../hooks/useUserScreen";
+import { useScrollPosition, useWindowSize } from "../../hooks/useUserScreen.jsx";
 import "./MiniMap.css"; 
 
 function MiniMap({ sections, totalSize }) {

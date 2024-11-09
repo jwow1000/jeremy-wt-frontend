@@ -1,0 +1,44 @@
+#mainContainer-Videos {
+  width: 100vw;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.iframeContainer-Videos {
+  width: 98vw;
+  height: 15rem;
+  margin: 5rem 1vw;
+  background-color: rgb(255,255,255,0.6); 
+}
+
+.iframe-Videos {
+  border: none;
+  width: 98vw;
+  height: 15rem;
+}
+
+
+@media (min-width: 600px) and (max-width: 1199px) {
+  .iframeContainer-Videos {
+    width: 80vw;
+    height: 30rem;
+  }
+  .iframe-Videos {
+    width: 80vw;
+    height: 30rem;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .iframeContainer-Videos {
+    width: 70vw;
+    height: 30rem;
+  }
+  .iframe-Videos {
+    width: 70vw;
+    height: 30rem;
+  }
+}

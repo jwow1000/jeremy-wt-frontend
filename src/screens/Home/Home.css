@@ -1,10 +1,12 @@
 #mainContainer-Home {
   display: flex;
   width: 2000px;
-  flex-flow: row;
+  flex-flow: row wrap;
   gap: 1rem;
 }
-
+.date {
+  font-size: 4rem;
+}
 #bio-Home {
     display: block;
     height: 100%;

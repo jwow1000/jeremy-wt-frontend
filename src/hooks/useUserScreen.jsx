@@ -9,7 +9,7 @@ export function useScrollPosition() {
         x: window.scrollX,
         y: window.scrollY,
       }
-      console.log("client posoitoons: ", obj)
+      // console.log("client posoitoons: ", obj)
       setScrollPosition( obj );
     };
 

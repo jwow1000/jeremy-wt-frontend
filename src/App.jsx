@@ -3,7 +3,7 @@ import Layout from "./components/Layout/Layout.jsx";
 import Home from "./screens/Home/Home.jsx";
 import Videos from "./screens/Videos/Videos.jsx";
 import { Routes, Route } from 'react-router-dom';
-import './App.css'
+import stylesApp from "./stylesApp.module.css";
 
 function App() {
 

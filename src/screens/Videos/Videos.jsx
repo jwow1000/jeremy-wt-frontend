@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchVideos } from '../../services/fetch';
-import './Videos.css';
+import styles from "./stylesVideos.module.css";
+import appStyles from "../../stylesApp.module.css"
 
 const vidLinks = [
   "https://www.youtube.com/embed/uAKv80hS3MI",
@@ -35,21 +36,21 @@ function Videos() {
     
   }, []);
   return (
-    <div id="mainContainer-Videos">
-      <div className="screenHeader-App">
+    <div id={styles.container} className='mapIt-layout'>
+      <div className={appStyles.header}>
         VIDEOS
       </div>
       {
         videos.map((item, idx) =>(
           <div 
-            className='iframeContainer-Videos map-it'
-            key={`video-${idx}`}
+            className={`${styles.iframeContainer} map-it`}
+            key={`video-cont-${idx}`}
           >
           
-            
             <iframe 
-              className="iframe-Videos"
+              className={styles.iframe}
               title={item.title.rendered}
+              key={`video-${idx}`}
               src={`${item.acf.video_url}`} 
               
             >

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // import RandomBGLines from "../RandomLines/RandomBGLines.jsx";
 import MiniMap from "../MiniMap/MiniMap.jsx";
-import './Nav.css';
+import styles from './stylesNav.module.css';
 
 function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
   const [showMap, setShowMap] = useState(false);
@@ -13,39 +13,25 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
   })
 
   const handleActive = (act) => {
-    return act ? 'navLinkActive-Nav navLink-Nav' : 'navLink-Nav'
+    return act ? styles.navLinkActive.navLink : styles.navLink
   }
 
   let location = useLocation();
   const navElem = useRef(null);
 
-  
-  
   useEffect(() => {
     setPathSegments( location.pathname.split('/').filter(Boolean) );
-    console.log("look at path segs", pathSegments);
   },[]);
 
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (navElem.current) {
-        const { width, height } = navElem.current.getBoundingClientRect();
-        console.log("the bounding client: ", width, height)
-        setSize({ width, height });
-      }
-    }
-
-    updateDimensions();
-
-  }, [navElem.current])
+  
 
 
   // const [ navHeight, setNavHeight ] = useState(0); 
 
   function Hide() {
     return (
-      <nav 
-        id="NavsContainer-Nav" 
+      <div
+        id={styles.container}
         ref={ navElem }
         style={{}}
       >
@@ -59,10 +45,11 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
         hAmount={10}
       /> */}
 
-      <div 
-        id="nav-closeButton"
-        onClick={handleClick}
-      >X</div> 
+        <div 
+          id={styles.closeButton}
+          onClick={ handleClick }
+        >X</div>
+       
       <NavLink 
         className={({ isActive }) => (handleActive(isActive))} 
         to="/"
@@ -98,7 +85,7 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
         web portfolio
       </NavLink>
       
-    </nav>
+    </div>
     )
   }
   
@@ -107,39 +94,38 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
   }
   
   return (
-    <div id="nav-top-container">
+    <div id={styles.topContainer}>
       {
         showMap &&
           <MiniMap 
-            sections={sections} 
-            scrollPosition={scrollPosition} 
-            totalSize={totalSize}
+            sections={ sections } 
+            scrollPosition={ scrollPosition } 
+            totalSize={ totalSize }
           />
       }
 
       <div
-        id="showNav-button"
+        id={styles.showNavButton}
         onClick={ handleClick }
       >
         +
       </div>
       
-      <ul id="breadCrumbs">
+      <ul id={styles.breadCrumbs}>
         <li>
-          <NavLink to="/" className="breadcrumb-link"> 
-          <span className="bc-block">home</span>/ 
+          <NavLink to="/" className={styles.breadcrumbLink}> 
+          <span className={styles.bcBlock}>home</span>/ 
           </NavLink>
         </li>
        
         {
-          pathSegments.map( (segment) => (
-            <li>
+          pathSegments.map( (segment,idx) => (
+            <li key={`nav-link-${idx}`}>
               <NavLink 
                 to={`/${segment}`} 
-                className="breadcrumb-link"
-                key={`nav-link-${segment}`}
+                className={styles.breadcrumbLink}
               >
-                <span className="bc-block">{ segment }</span>/
+                <span className={styles.bcBlock}>{ segment }</span>/
               </NavLink>
             </li>
           ))
@@ -147,7 +133,7 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
       </ul>
       
       <div 
-        id="showMap-button"
+        id={styles.showMapButton}
         onClick={ () => setShowMap((prev) => !prev) }
       > show map 
       </div>

@@ -5,20 +5,21 @@ function MiniMap({ sections, totalSize }) {
   // Calculate the height of each section relative to the viewport
   const scrollPos = useScrollPosition();
   const viewSize = useWindowSize();
+  // console.log("sections: ", sections, "total size: ", totalSize)
 
   return (
     <div className="mini-map">
       {
         sections && sections.map((section, index) => {
-          console.log("check measurements: ", scrollPos, viewSize, totalSize)
+          // console.log("check measurements: ", scrollPos, viewSize, totalSize)
           const sectionTop = section.offsetTop;
           const sectionLeft = section.offsetLeft;
           const sectionHeight = section.offsetHeight;
           const sectionWidth = section.offsetWidth;
 
-          console.log("section widtj", `${( sectionWidth / totalSize.width ) * 100}%`)
+          // console.log("section widtj", `${( sectionWidth / totalSize.width ) * 100}%`)
 
-          console.log("section width: ", sectionWidth, totalSize.width)
+          // console.log("section width: ", sectionWidth, totalSize.width)
           // const isCurrent =
           //   scrollPos.y >= sectionTop && scrollPos.y < sectionTop + sectionHeight &&
           //   scrollPos.x >= sectionLeft && scrollPos.x < sectionLeft + sectionWidth;

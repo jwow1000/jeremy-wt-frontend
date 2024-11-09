@@ -1,8 +1,8 @@
-import Nav from "../Nav/Nav.jsx";
+import NavBar from "../Nav/Nav.jsx";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
-import "./Layout.css";
+import styles from "./stylesLayout.module.css";
 
 
 
@@ -18,20 +18,22 @@ function Layout(props) {
   let location = useLocation();
 
   useEffect(() => {
-    // Wait for the component to mount, then select the child elements
-    const childElements = document.querySelectorAll('.layout > *');
-    
+    // Wait for the component to mount, then select the child main container
+    const childElements = document.querySelectorAll('.mapIt-layout > *');
+   
+    // console.log("the map its: ", childElements[0].querySelectorAll(".map-it"))
      // Initialize an empty array to store all the `.map-it` elements
     const allMapIts = [];
 
     // Iterate over each child element and search for `.map-it` elements within them
     childElements.forEach(child => {
-      const mapItsInChild = child.querySelectorAll('.map-it');
+      const mapItsInChild = child.querySelectorAll(".map-it");
+      console.log("are these the mapits?", mapItsInChild);
       // Convert NodeList to array and push into allMapIts
       allMapIts.push(...mapItsInChild);
     });
     
-    const totalBig = childElements[0].getBoundingClientRect();
+    // const totalBig = childElements[0].getBoundingClientRect();
     
     // set the state
     setTotalSize({
@@ -42,32 +44,35 @@ function Layout(props) {
     });
 
     setSections( allMapIts );
-    // You can now manipulate or use these elements as needed.
+  
   }, [location]); // Run this effect once, after the component has mounted
 
   
  
   return (
     <div 
-      id="container-Layout"
-      >
-      {/* <CaptureScroll maxScroll={4000} onScrollOutputChange={ handleOutput }/> */}
-      <div className="section"></div>
+      id={styles.container}
+    >
+      <NavBar 
+        sections={ sections } 
+        scrollPosition={ scrollPosition } 
+        totalSize={ totalSize } 
+        setShowNav={ setShowNav }
+        showNav={ showNav }
+        
+      />
+
+      
       <div 
         style={{"marginLeft": showNav ? "10rem" : "0"}}
-        id="body-Layout"
-        className="layout" 
+        id={styles.body}
+        className="mapIt-layout"
+        
       >
         {props.children}
       </div>
       
-      <Nav 
-        sections={sections} 
-        scrollPosition={scrollPosition} 
-        totalSize={totalSize} 
-        setShowNav={setShowNav}
-        showNav={ showNav }
-      />
+      
 
     </div>
   );

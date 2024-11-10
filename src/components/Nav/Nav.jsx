@@ -1,23 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-// import RandomBGLines from "../RandomLines/RandomBGLines.jsx";
 import MiniMap from "../MiniMap/MiniMap.jsx";
 import styles from './stylesNav.module.css';
 
-function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
-  const [showMap, setShowMap] = useState(false);
+
+
+function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
+  // the states
+  const [showNav, setShowNav] = useState(false);
   const [pathSegments, setPathSegments] = useState( [] );
   const [ size, setSize ] = useState({
     width: 0,
     height: 0,
   })
 
+  const navElem = useRef(null);
+    
   const handleActive = (act) => {
-    return act ? styles.navLinkActive.navLink : styles.navLink
+    return act ? `${styles.navLinkActive} ${styles.navLink}` : styles.navLink
   }
 
+
+  
+
   let location = useLocation();
-  const navElem = useRef(null);
 
   useEffect(() => {
     setPathSegments( location.pathname.split('/').filter(Boolean) );
@@ -26,83 +32,77 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
   
 
 
+  
   // const [ navHeight, setNavHeight ] = useState(0); 
 
-  function Hide() {
-    return (
-      <div
-        id={styles.container}
-        ref={ navElem }
-        style={{}}
-      >
-      
-      {/* <RandomBGLines 
-        id="randomLines" 
-        reRender={location}
-        width={size.width}
-        height={size.height}
-        wAmount={10}
-        hAmount={10}
-      /> */}
-
-        <div 
-          id={styles.closeButton}
-          onClick={ handleClick }
-        >X</div>
-       
-      <NavLink 
-        className={({ isActive }) => (handleActive(isActive))} 
-        to="/"
-      > 
-        home
-      </NavLink>
-
-      <NavLink 
-        className={({ isActive }) => (handleActive(isActive))} 
-        to="/things"
-      > 
-        things/installs
-      </NavLink>
-
-      <NavLink 
-        className={({ isActive }) => (handleActive(isActive))} 
-        to="/videos"
-      > 
-        videos
-      </NavLink>
-
-      <NavLink 
-        className={({ isActive }) => (handleActive(isActive))} 
-        to="/sounds"
-      > 
-        sounds
-      </NavLink>
-      
-      <NavLink 
-        className={({ isActive }) => (handleActive(isActive))} 
-        to="/webprojects"
-      > 
-        web portfolio
-      </NavLink>
-      
-    </div>
-    )
-  }
+ 
   
-  const handleClick = () => {
-    setShowNav( (state) => !state );
+  function handleClick() {
+    setShowNav( (value) => !value);
   }
-  
+
   return (
     <div id={styles.topContainer}>
       {
-        showMap &&
+        mapState &&
           <MiniMap 
             sections={ sections } 
             scrollPosition={ scrollPosition } 
             totalSize={ totalSize }
           />
       }
+      
+      <div
+        className={styles.sideBar}
+        ref={ navElem }
+        style={{
+          transform: showNav ? 'translateX(0)' : 'translateX(-100%)',
+        }}
+        
+        
+      >
+  
+        <div 
+          id={styles.closeButton}
+          onClick={ handleClick }
+        >X</div>
+        
+        <NavLink 
+          className={({ isActive }) => (handleActive(isActive))} 
+          to="/"
+        > 
+          home
+        </NavLink>
+  
+        <NavLink 
+          className={({ isActive }) => (handleActive(isActive))} 
+          to="/things"
+        > 
+          things/installs
+        </NavLink>
+  
+        <NavLink 
+          className={({ isActive }) => (handleActive(isActive))} 
+          to="/videos"
+        > 
+          videos
+        </NavLink>
+  
+        <NavLink 
+          className={({ isActive }) => (handleActive(isActive))} 
+          to="/sounds"
+        > 
+          sounds
+        </NavLink>
+        
+        <NavLink 
+          className={({ isActive }) => (handleActive(isActive))} 
+          to="/webprojects"
+        > 
+          web portfolio
+        </NavLink>
+      
+      </div>      
 
       <div
         id={styles.showNavButton}
@@ -134,15 +134,10 @@ function Nav({sections, scrollPosition, totalSize, setShowNav, showNav}) {
       
       <div 
         id={styles.showMapButton}
-        onClick={ () => setShowMap((prev) => !prev) }
+        onClick={ () => setMapState((prev) => !prev) }
       > show map 
       </div>
       
-      {
-        showNav &&
-          <Hide />
-      }
-
     </div>
   )
 }

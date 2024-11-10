@@ -1,54 +1,48 @@
 import NavBar from "../Nav/Nav.jsx";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
 import styles from "./stylesLayout.module.css";
 
 
 
-function Layout(props) {
+function Layout({children}) {
   const [sections, setSections] = useState([]);
+  const [mapState, setMapState] = useState(false);
   const [totalSize, setTotalSize] = useState({
     width: 0,
     height: 0,
   });
-  const [showNav, setShowNav] = useState( false );
-  
+  const contentRef = useRef(null)
   const scrollPosition = useScrollPosition();
-  let location = useLocation();
+  
+  // useEffect(() => {
+  //   if (contentRef.current) {
+  //     // Query all .map-it elements within contentRef
+  //     const foundMapItems = contentRef.current.querySelector('.mapIt-layout');
+  //     // setMapItems(Array.from(foundMapItems)); // Convert NodeList to array for easier use
+  //     console.log("All .map-it elements found:", foundMapItems);
+  //   }
+  // }, [children]); // Run this effect whenever `children` change
 
   useEffect(() => {
     // Wait for the component to mount, then select the child main container
-    const childElements = document.querySelectorAll('.mapIt-layout > *');
-   
-    // console.log("the map its: ", childElements[0].querySelectorAll(".map-it"))
-     // Initialize an empty array to store all the `.map-it` elements
-    const allMapIts = [];
+    if(contentRef.current) {
+      const maps = contentRef.current.querySelectorAll('.map-it');
+      setSections( Array.from( maps ) )
 
-    // Iterate over each child element and search for `.map-it` elements within them
-    childElements.forEach(child => {
-      const mapItsInChild = child.querySelectorAll(".map-it");
-      console.log("are these the mapits?", mapItsInChild);
-      // Convert NodeList to array and push into allMapIts
-      allMapIts.push(...mapItsInChild);
-    });
-    
-    // const totalBig = childElements[0].getBoundingClientRect();
-    
+    }
+    if (!contentRef.current) return; // Exit if no element is found
+
     // set the state
     setTotalSize({
-      width: childElements[0].scrollWidth,
-      height: childElements[0].scrollHeight,
-      // width: totalBig.width,
-      // height: totalBig.height,
+      width: contentRef.current.scrollWidth,
+      height: contentRef.current.scrollHeight,
     });
 
-    setSections( allMapIts );
-  
-  }, [location]); // Run this effect once, after the component has mounted
+  }, [mapState, children]); // Run this effect once, after the component has mounted
 
   
- 
   return (
     <div 
       id={styles.layout}
@@ -56,21 +50,21 @@ function Layout(props) {
       <NavBar 
         sections={ sections } 
         scrollPosition={ scrollPosition } 
-        totalSize={ totalSize } 
-        setShowNav={ setShowNav }
-        showNav={ showNav }
+        totalSize={ totalSize }
+        mapState={mapState}
+        setMapState={setMapState}
         id={styles.navbar}
         
       />
 
       
       <div 
-        style={{"marginLeft": showNav ? "10rem" : "0"}}
         id={styles.content}
-        // className="mapIt-layout"
+        ref={ contentRef }
+        className="mapIt-layout"
         
       >
-        {props.children}
+        { children }
       </div>
       
       

@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 
 export function useScrollPosition() {
-  const [scrollPosition, setScrollPosition] = useState( {} );
+  const [scrollPosition, setScrollPosition] = useState( {x: 0, y: 0 } );
 
   useEffect(() => {
     const handleScroll = () => {
-      const obj = {
+      
+      // console.log("client posoitoons: ", obj)
+      setScrollPosition({ 
         x: window.scrollX,
         y: window.scrollY,
-      }
-      // console.log("client posoitoons: ", obj)
-      setScrollPosition( obj );
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
-
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

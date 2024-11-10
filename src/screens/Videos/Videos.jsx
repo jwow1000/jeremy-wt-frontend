@@ -36,8 +36,8 @@ function Videos() {
     
   }, []);
   return (
-    <div id={styles.container} className='mapIt-layout'>
-      <div className={appStyles.header}>
+    <div id={styles.container} >
+      <div className={`${appStyles.header} map-it`}>
         VIDEOS
       </div>
       {

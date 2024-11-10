@@ -9,7 +9,7 @@ function Home() {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const data = await fetchVideos();
+        const data = await fetchPosts();
         setPosts(data);
       } catch (error) {
         console.error("Failed to load posts", error);
@@ -24,7 +24,7 @@ function Home() {
 
 
   return (
-    <div id="mainContainer-Home">
+    <div id="mainContainer-Home " className="mapIt-layout">
       POOOP
 
       {  

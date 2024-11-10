@@ -51,7 +51,7 @@ function Layout(props) {
  
   return (
     <div 
-      id={styles.container}
+      id={styles.layout}
     >
       <NavBar 
         sections={ sections } 
@@ -59,14 +59,15 @@ function Layout(props) {
         totalSize={ totalSize } 
         setShowNav={ setShowNav }
         showNav={ showNav }
+        id={styles.navbar}
         
       />
 
       
       <div 
         style={{"marginLeft": showNav ? "10rem" : "0"}}
-        id={styles.body}
-        className="mapIt-layout"
+        id={styles.content}
+        // className="mapIt-layout"
         
       >
         {props.children}

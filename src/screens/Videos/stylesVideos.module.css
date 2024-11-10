@@ -1,10 +1,11 @@
 #container {
   width: 300vw;
-  height: auto;
+  
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .iframeContainer {

@@ -21,3 +21,43 @@ export const convertVid = function( path ) {
   return imageURL;
 
 }
+
+/**
+ * Converts a CSS size string (e.g., "20rem", "50px", "2em") to a numeric pixel value.
+ * @param {string} sizeStr - The size string (e.g., "20rem", "50px", "2em").
+ * @returns {number} The size in pixels, or NaN if the input is invalid.
+ */
+export function parseSizeToPixels(sizeStr) {
+  // Extract the numeric value and unit from the string
+  const match = sizeStr.match(/^([\d.]+)(\w+)$/);
+  if (!match) return NaN;
+
+  const [_, value, unit] = match;
+  const numericValue = parseFloat(value);
+
+  // Convert based on the unit
+  if (unit === "px") {
+    return numericValue;
+  } else if (unit === "rem") {
+    // Get the root font-size (default is 16px in most browsers)
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return numericValue * rootFontSize;
+  } else if (unit === "em") {
+    // For `em`, get the font-size of the element's context (usually the parent element)
+    // This assumes that `sizeStr` is used within an element's computed style
+    const parentFontSize = parseFloat(getComputedStyle(document.body).fontSize);
+    return numericValue * parentFontSize;
+  } else if (unit === "%") {
+    // For `%`, assume it refers to a percentage of the parent element's size
+    // Modify this according to your layout needs
+    return numericValue * 0.01 * document.body.clientWidth; // Example, % width of body
+  }
+
+  // If you encounter a unit you don't handle, return NaN
+  return NaN;
+}
+
+// // Example usage
+// console.log(parseSizeToPixels("20rem")); // Converts to pixels based on the root font size
+// console.log(parseSizeToPixels("50px"));  // 50
+// console.log(parseSizeToPixels("0.5em")); // Converts to pixels based on the parent font size

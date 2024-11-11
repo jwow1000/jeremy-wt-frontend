@@ -13,13 +13,10 @@ function MiniMap({ sections, totalSize }) {
     <div className="mini-map">
       {
         sections && sections.map((section, index) => {
-          console.log("check measurements: ", scrollPos, viewSize, totalSize)
           const sectionTop = section.offsetTop;
           const sectionLeft = section.offsetLeft;
           const sectionHeight = section.offsetHeight;
           const sectionWidth = section.offsetWidth;
-
-          console.log("section width", `${( sectionWidth / totalSize.width ) * 100}%`)
 
           // console.log("section width: ", sectionWidth, totalSize.width)
          

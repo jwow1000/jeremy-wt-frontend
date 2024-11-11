@@ -6,7 +6,7 @@ import styles from './stylesNav.module.css';
 
 
 
-function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
+function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoomCount, zoomCount, zoom}) {
   // the states
   const [showNav, setShowNav] = useState(false);
   const [pathSegments, setPathSegments] = useState( [] );
@@ -38,6 +38,26 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
   function handleHomeClick() {
     setShowNav( true );
   }
+
+  function handleNavZoom( bool ) {
+    if(bool) {
+      if( zoomCount >= 4 ) {
+        setZoomCount( 4 );
+      } else {
+        setZoomCount((count) => count++);
+      }
+
+    } else {
+      if( zoomCount <= -4 ) {
+        setZoomCount( -4 );
+      } else {
+        setZoomCount((count) => count--);
+      }
+
+    }
+
+    zoom( zoomCount );
+  }
   return (
     <div id={styles.topContainer}>
       {
@@ -59,6 +79,8 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
         id={styles.logo}
         onClick={ handleHomeClick}
       /> 
+      <div onClick={() => handleNavZoom( true )}>ZOOM OUT</div>
+      <div onClick={() => handleNavZoom( false )}>ZOOM In</div>
       <div
         className={styles.sideBar}
         ref={ navElem }

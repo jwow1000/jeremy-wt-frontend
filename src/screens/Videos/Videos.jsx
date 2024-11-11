@@ -53,12 +53,12 @@ function Videos() {
           return (
             <div key={`video-cont-${idx}`}>
 
-              <h1 className={styles.header}>{item.title.rendered}</h1>
               <div 
                 className={`${styles.iframeContainer} map-it`}
                 onClick={ () => handleImgClick(videoUrl) }
                 
               >
+                <h1 className={styles.header}>{item.title.rendered}</h1>
                 {
                   clickedVideo === videoUrl ? (
                     <iframe 

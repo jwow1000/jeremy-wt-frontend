@@ -1,8 +1,5 @@
 #layout {
   min-height: 100vh;
-  
- 
-
 }
 
 #navbar {
@@ -12,7 +9,8 @@
 }
 
 #content {
-  
+  margin: 6rem 0 0 0; 
+  padding: 0 0 0 4rem;
   width: 100vw;
 
   
@@ -33,6 +31,9 @@
 /* scale for laptops/PC and large screens */
 @media (min-width: 1200px) {
   #body { 
+  }
+  #content {
+    padding: 5rem 0 0 4rem;
   }
 
 }

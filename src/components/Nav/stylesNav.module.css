@@ -28,6 +28,16 @@
   top: 0;
   z-index: -100;
 }
+#logo {
+  
+  width: 4rem;
+  margin: 1.45rem 0.45rem;
+
+}
+
+#logo:hover {
+  background-color: rgb(167, 119, 217);
+}
 
 #topContainer {
   position: fixed;
@@ -37,8 +47,27 @@
   width: 100vw;
   margin: 0;
   padding: 0;
-  background-color: rgba(255, 196, 196, 1);
+  background-color: rgb(255, 147, 214);
   z-index: 1000;
+}
+
+#navBackClick {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  z-index: 0;
+}
+
+#mapBackClick {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }
 
 #showNavButton {
@@ -118,7 +147,7 @@
 }
 
 .bcBlock:hover {
-  background-color: rgb(255, 114, 82); 
+  background-color: rgb(215, 97, 255); 
 }
 
 #showMapButton {
@@ -150,6 +179,11 @@
   #topContainer {
     height: 2rem;
   }
+  #logo {
+    width: 4rem;
+    margin-top: 2rem;
+  }
+
 
   #breadCrumbs {
     font-size: 1.3rem;
@@ -175,6 +209,11 @@
 
   #topContainer {
     height: 2rem;
+  }
+
+  #logo {
+    width: 4rem;
+    margin-top: 2rem;
   }
 
   .navLink {

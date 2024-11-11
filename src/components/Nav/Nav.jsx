@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import logo from "../../assets/jwy_logo_24.png";
 import MiniMap from "../MiniMap/MiniMap.jsx";
 import styles from './stylesNav.module.css';
 
@@ -9,6 +10,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
   // the states
   const [showNav, setShowNav] = useState(false);
   const [pathSegments, setPathSegments] = useState( [] );
+  
   const [ size, setSize ] = useState({
     width: 0,
     height: 0,
@@ -20,18 +22,11 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
     return act ? `${styles.navLinkActive} ${styles.navLink}` : styles.navLink
   }
 
-
-  
-
   let location = useLocation();
 
   useEffect(() => {
     setPathSegments( location.pathname.split('/').filter(Boolean) );
-  },[]);
-
-  
-
-
+  },[location]);
   
   // const [ navHeight, setNavHeight ] = useState(0); 
 
@@ -40,28 +35,44 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState}) {
   function handleClick() {
     setShowNav( (value) => !value);
   }
-
+  function handleHomeClick() {
+    setShowNav( true );
+  }
   return (
     <div id={styles.topContainer}>
       {
         mapState &&
-          <MiniMap 
-            sections={ sections } 
-            scrollPosition={ scrollPosition } 
-            totalSize={ totalSize }
-          />
+          <>
+            <MiniMap 
+              sections={ sections } 
+              scrollPosition={ scrollPosition } 
+              totalSize={ totalSize }
+            />
+            <div 
+              id={styles.mapBackClick}
+              onClick={ () => setMapState(false) }
+            ></div>
+          </>
       }
-      
+      <img
+        src={logo}
+        id={styles.logo}
+        onClick={ handleHomeClick}
+      /> 
       <div
         className={styles.sideBar}
         ref={ navElem }
         style={{
           transform: showNav ? 'translateX(0)' : 'translateX(-100%)',
         }}
-        
-        
       >
-  
+        {
+          showNav &&
+            <div 
+              id={styles.navBackClick}
+              onClick={ () => setShowNav(false) }
+            ></div>
+        }
         <div 
           id={styles.closeButton}
           onClick={ handleClick }

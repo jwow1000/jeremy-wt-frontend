@@ -23,18 +23,18 @@ function MiniMap({ sections, totalSize }) {
 
           // console.log("section width: ", sectionWidth, totalSize.width)
          
-          const isCurrent = (
-            scrollPos.y >= sectionTop && 
-            scrollPos.y < sectionTop + sectionHeight &&
-            scrollPos.x >= sectionLeft && 
-            scrollPos.x < sectionLeft + sectionWidth
-          ) || (
-            Math.abs(scrollPos.y + viewSize.height / 2 - (sectionTop + sectionHeight / 2)) < sectionHeight * 0.1 &&
-            Math.abs(scrollPos.x + viewSize.width / 2 - (sectionLeft + sectionWidth / 2)) < sectionWidth * 0.1
-          );
+          // const isCurrent = (
+          //   scrollPos.y >= sectionTop && 
+          //   scrollPos.y < sectionTop + sectionHeight &&
+          //   scrollPos.x >= sectionLeft && 
+          //   scrollPos.x < sectionLeft + sectionWidth
+          // ) || (
+          //   Math.abs(scrollPos.y + viewSize.height / 2 - (sectionTop + sectionHeight / 2)) < sectionHeight * 0.1 &&
+          //   Math.abs(scrollPos.x + viewSize.width / 2 - (sectionLeft + sectionWidth / 2)) < sectionWidth * 0.1
+          // );
           
           // const isCurrent = false;
-          console.log("isCurrent: ", isCurrent)
+          // console.log("isCurrent: ", isCurrent)
 
           return (
             <div
@@ -45,7 +45,7 @@ function MiniMap({ sections, totalSize }) {
                 height: `${( sectionHeight / totalSize.height ) * 100}%`,
                 left: `${(  sectionLeft / totalSize.width ) * 100}%`,
                 top: `${( sectionTop / totalSize.height  ) * 100}%`,
-                backgroundColor: isCurrent ? 'rgb(240,100,100)' : 'lightgray',
+                // backgroundColor: isCurrent ? 'rgb(240,100,100)' : 'lightgray',
               }}
               onClick={() => {
                 const centerX = sectionLeft - (viewSize.width / 2) + (sectionWidth / 2);

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchVideos } from '../../services/fetch';
+import { convertVid } from '../../services/conversions.js';
 import styles from "./stylesVideos.module.css";
 import appStyles from "../../stylesApp.module.css"
 
@@ -19,6 +20,7 @@ const vidLinks = [
 function Videos() {
   const [videos, setVideos] = useState([]); 
   const [loading, setLoading] = useState(true);
+  const [clickedVideo, setClickedVideo] = useState(null); // Track which video has been clicked
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -35,29 +37,49 @@ function Videos() {
     loadPosts();
     
   }, []);
+
+  const handleImgClick = (videoUrl) => {
+    setClickedVideo(videoUrl); // Set clicked video URL to show iframe
+  }
+
   return (
     <div id={styles.container} >
       <div className={`${appStyles.header} map-it`}>
         VIDEOS
       </div>
       {
-        videos.map((item, idx) =>(
-          <div 
-            className={`${styles.iframeContainer} map-it`}
-            key={`video-cont-${idx}`}
-          >
-          
-            <iframe 
-              className={styles.iframe}
-              title={item.title.rendered}
-              key={`video-${idx}`}
-              src={`${item.acf.video_url}`} 
-              
-            >
+        videos.map( (item, idx) => {
+          const videoUrl = item.acf.video_url;
+          return (
+            <div key={`video-cont-${idx}`}>
 
-            </iframe>
-          </div>
-        ))
+              <h1 className={styles.header}>{item.title.rendered}</h1>
+              <div 
+                className={`${styles.iframeContainer} map-it`}
+                onClick={ () => handleImgClick(videoUrl) }
+                
+              >
+                {
+                  clickedVideo === videoUrl ? (
+                    <iframe 
+                      className={styles.iframe}
+                      title={item.title.rendered}
+                      key={`video-${idx}`}
+                      src={`${item.acf.video_url}`} 
+                    />
+                  ) : (
+
+                    <img
+                      className={styles.iframe}
+                      src={ convertVid( item.acf.video_url ) }
+                    />
+                  )
+                }
+              
+              </div>
+            </div>
+          )
+        })
       }
       
 

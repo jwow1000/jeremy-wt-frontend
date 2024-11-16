@@ -40,24 +40,11 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
   }
 
   function handleNavZoom( bool ) {
-    if(bool) {
-      if( zoomCount >= 4 ) {
-        setZoomCount( 4 );
-      } else {
-        setZoomCount((count) => count++);
-      }
+   
 
-    } else {
-      if( zoomCount <= -4 ) {
-        setZoomCount( -4 );
-      } else {
-        setZoomCount((count) => count--);
-      }
-
-    }
-
-    zoom( zoomCount );
+    zoom( bool );
   }
+
   return (
     <div id={styles.topContainer}>
       {
@@ -79,8 +66,11 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
         id={styles.logo}
         onClick={ handleHomeClick}
       /> 
-      <div onClick={() => handleNavZoom( true )}>ZOOM OUT</div>
-      <div onClick={() => handleNavZoom( false )}>ZOOM In</div>
+      <div onClick={() => handleNavZoom( false )}>ZOOM OUT</div>
+      <br>
+      </br>
+      <br></br>
+      <div onClick={() => handleNavZoom( true )}>ZOOM In</div>
       <div
         className={styles.sideBar}
         ref={ navElem }

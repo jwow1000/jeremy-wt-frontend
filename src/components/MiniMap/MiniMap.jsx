@@ -1,4 +1,5 @@
 import { useScrollPosition, useWindowSize } from "../../hooks/useUserScreen.jsx";
+import { parseSizeToPixels } from "../../services/conversions.js";
 import "./MiniMap.css"; 
 
 function MiniMap({ sections, totalSize }) {
@@ -13,10 +14,10 @@ function MiniMap({ sections, totalSize }) {
     <div className="mini-map">
       {
         sections && sections.map((section, index) => {
-          const sectionTop = section.offsetTop;
-          const sectionLeft = section.offsetLeft;
-          const sectionHeight = section.offsetHeight;
-          const sectionWidth = section.offsetWidth;
+          const sectionTop = section.obj.offsetTop;
+          const sectionLeft = section.obj.offsetLeft;
+          const sectionHeight = section.obj.offsetHeight;
+          const sectionWidth = section.obj.offsetWidth;
 
           // console.log("section width: ", sectionWidth, totalSize.width)
          
@@ -46,7 +47,7 @@ function MiniMap({ sections, totalSize }) {
               }}
               onClick={() => {
                 const centerX = sectionLeft - (viewSize.width / 2) + (sectionWidth / 2);
-                const centerY = sectionTop - (viewSize.height / 2) + (sectionHeight / 2);
+                const centerY = sectionTop - ( (viewSize.height / 2) - parseSizeToPixels("2rem")) + (sectionHeight / 2);
               
                 window.scrollTo({ 
                   top: centerY, 

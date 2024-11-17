@@ -37,9 +37,7 @@ function Videos( props ) {
 
   return (
     <div id={styles.container} >
-      <div className={`${appStyles.header} map-it`}>
-        VIDEOS
-      </div>
+   
       {
         videos.map( (item, idx) => {
           const videoUrl = item.acf.video_url;

@@ -28,6 +28,7 @@
   top: 0;
   z-index: -100;
 }
+
 #logo {
   
   width: 4rem;
@@ -60,7 +61,26 @@
   opacity: 0;
   z-index: 0;
 }
-
+.zoomButts {
+  height: 1.5rem;
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  line-height: 100%;
+  position: absolute;
+  top: 0%;
+  cursor: pointer;
+}
+.zoomButts:hover {
+  background-color: aqua;
+}
+#zoomIn {
+  right: 20%;
+  cursor: zoom-in;
+}
+#zoomOut {
+  right: 30%;
+  cursor: zoom-out;
+}
 #mapBackClick {
   position: absolute;
   top: 100%;
@@ -71,21 +91,13 @@
 }
 
 #showNavButton {
-  position: absolute;
-  padding: 0.1rem 2rem;
+  font-size: 1rem;
   right: 50%;
-  top: 50%;
-  transform: translate( 50%, -50% );
-  width: auto;
-  color: black;
+  line-height: 150%;
   z-index: 1000;
-  cursor: pointer;
 }
 
-#showNavButton:hover {
-  background-color: rgba(255, 255, 255, 0.725);
 
-}
 
 .navLink {
   text-decoration: none; 
@@ -183,6 +195,10 @@
     width: 4rem;
     margin-top: 2rem;
   }
+  .zoomButts {
+    height: 2rem;
+    padding: 0rem 2rem;
+  } 
 
 
   #breadCrumbs {
@@ -232,5 +248,8 @@
   #showNavButton {
     font-size: 1.3rem;
   }
-  
+  .zoomButts {
+    height: 2rem;
+    padding: 0rem 2rem;
+  } 
 }

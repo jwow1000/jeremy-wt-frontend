@@ -2,7 +2,7 @@ import { useScrollPosition, useWindowSize } from "../../hooks/useUserScreen.jsx"
 import { parseSizeToPixels } from "../../services/conversions.js";
 import "./MiniMap.css"; 
 
-function MiniMap({ sections, totalSize }) {
+function MiniMap({ sections, totalSize, setMapState, mapState }) {
   
   
   // Calculate the height of each section relative to the viewport
@@ -11,7 +11,11 @@ function MiniMap({ sections, totalSize }) {
   // console.log("sections: ", sections, "total size: ", totalSize)
 
   return (
-    <div className="mini-map">
+    <div 
+      className="mini-map"
+      
+    >
+
       {
         sections && sections.map((section, index) => {
           const sectionTop = section.obj.offsetTop;

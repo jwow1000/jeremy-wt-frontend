@@ -1,4 +1,5 @@
 import NavBar from "../Nav/Nav.jsx";
+import { useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { DataReadyContext } from "../../hooks/dataReadyContext.jsx";
 import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
@@ -18,13 +19,11 @@ function Layout({children}) {
   });
   const contentRef = useRef(null)
   const scrollPosition = useScrollPosition();
+  const location = useLocation();
   
-  // // only on mount useEffect
-  // useEffect(() => {
 
-  // });
   useEffect(() => {
-    
+    setDataReady(false);
     // Wait for the component to mount, then select the child main container
     if(contentRef.current && dataReady) {
       const maps = contentRef.current.querySelectorAll('.map-it');
@@ -56,7 +55,7 @@ function Layout({children}) {
     
 
 
-  }, [mapState, children, dataReady]); 
+  }, [mapState, children, dataReady, location]); 
 
   // this could always be a standard block size, like a map-it div is the same throughout the site?
   // but this could be boring

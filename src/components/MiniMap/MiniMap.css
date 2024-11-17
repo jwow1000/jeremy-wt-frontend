@@ -7,12 +7,18 @@
   right: 0;
   z-index: 10000;
   background-color: rgba(255,255,255,0.4);
+  pointer-events: none;
 }
 
 .mini-map-section {
   background-color: #dedede;
   border: 1px solid black;
   position: absolute;
+  transition: background-color 0.25s ease;
+  pointer-events: auto;
+}
+.mini-map-section:hover {
+  background-color: #dc85ff;
 }
 
 #viewPort-border {

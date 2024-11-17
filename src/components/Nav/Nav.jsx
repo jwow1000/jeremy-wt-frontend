@@ -54,6 +54,8 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
               sections={ sections } 
               scrollPosition={ scrollPosition } 
               totalSize={ totalSize }
+              setMapState={setMapState}
+              mapState={mapState}
             />
             <div 
               id={styles.mapBackClick}
@@ -66,11 +68,26 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
         id={styles.logo}
         onClick={ handleHomeClick}
       /> 
-      <div onClick={() => handleNavZoom( false )}>ZOOM OUT</div>
-      <br>
-      </br>
-      <br></br>
-      <div onClick={() => handleNavZoom( true )}>ZOOM In</div>
+      <div 
+        onClick={() => handleNavZoom( false )}
+        className={styles.zoomButts}
+        id={styles.zoomOut}
+      >-</div>
+
+      <div 
+        onClick={() => handleNavZoom( true )}
+        className={styles.zoomButts}
+        id={styles.zoomIn}
+      >+</div>
+      
+      <div
+        id={styles.showNavButton}
+        className={styles.zoomButts}
+        onClick={ handleClick }
+      >
+       𓃑
+      </div>
+      
       <div
         className={styles.sideBar}
         ref={ navElem }
@@ -120,19 +137,14 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
         
         <NavLink 
           className={({ isActive }) => (handleActive(isActive))} 
-          to="/webprojects"
+          to="/webportfolio"
         > 
           web portfolio
         </NavLink>
       
       </div>      
 
-      <div
-        id={styles.showNavButton}
-        onClick={ handleClick }
-      >
-        +
-      </div>
+     
       
       <ul id={styles.breadCrumbs}>
         <li>

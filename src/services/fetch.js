@@ -1,6 +1,6 @@
 import api from "./api.js";
 
-// utility fetch to see category ids
+// utility fetch to see category ids, use for dev only
 export const getCategoryId = async (slug) => {
   try {
     const response = await api.get(`/categories?slug=${slug}`);
@@ -11,6 +11,18 @@ export const getCategoryId = async (slug) => {
     }
   } catch (error) {
     console.error("Error fetching category ID:", error);
+    throw error;
+  }
+};
+
+// get a post with id
+export const fetchPost = async ( id ) => {
+  try {
+    const response = await api.get(`/posts/${ id }`);
+    console.log("response data: ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching post:", error);
     throw error;
   }
 };
@@ -36,7 +48,7 @@ export const fetchVideos = async () => {
     console.log("videos response data: ", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Error fetching the videos category:", error);
     throw error;
   }
 };
@@ -50,7 +62,7 @@ export const fetchWebProjects = async () => {
     console.log("videos response data: ", response.data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error("Error fetching the Web Portfolio:", error);
     throw error;
   }
 };

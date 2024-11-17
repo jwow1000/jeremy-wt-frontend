@@ -149,7 +149,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
       <ul id={styles.breadCrumbs}>
         <li>
           <NavLink to="/" className={styles.breadcrumbLink}> 
-          <span className={styles.bcBlock}>home</span>/ 
+            /<span className={styles.bcBlock}>home</span>
           </NavLink>
         </li>
        
@@ -160,7 +160,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
                 to={`/${segment}`} 
                 className={styles.breadcrumbLink}
               >
-                <span className={styles.bcBlock}>{ segment }</span>/
+                /<span className={styles.bcBlock}>{ segment }</span>
               </NavLink>
             </li>
           ))

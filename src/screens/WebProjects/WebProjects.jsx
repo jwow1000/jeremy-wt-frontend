@@ -8,6 +8,8 @@ import appStyles from "../../stylesApp.module.css"
 function WebProjects( props ) {
   const { dataReady, setDataReady } = useContext(DataReadyContext);
   const [projects, setProjects] = useState([]); 
+  const [clickState, setClickState] = useState(0);
+
   // const [clickedVideo, setClickedVideo] = useState(null); // Track which video has been clicked
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function WebProjects( props ) {
   // const handleImgClick = (videoUrl) => {
   //   setClickedVideo(videoUrl); // Set clicked video URL to show iframe
   // }
-
+  
   return (
     <div id={styles.container} >
       
@@ -46,9 +48,12 @@ function WebProjects( props ) {
               className={`${styles.projectContainer} map-it`}
               key={`webproject-${idx}`}
               style={ styleObject }
+              
             >
               <h1 className={styles.projectTitle}>{item.acf.title}</h1>
-                
+              <div className={styles.description}>
+                <p className={styles.descriptionBody}>{item.acf.description}</p>
+              </div>
 
             </div>
           

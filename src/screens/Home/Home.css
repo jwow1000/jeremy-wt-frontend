@@ -1,7 +1,8 @@
 #mainContainer-Home {
   display: flex;
-  width: 2000px;
+  width: 80%;
   flex-flow: row wrap;
+  justify-content: space-around;
   gap: 1rem;
 }
 .date {
@@ -25,6 +26,13 @@
 
 .imgContainer-Home {
     width: 40vw;
+}
+.linkLogos {
+  width: 20vw;
+  
+}
+.linkLogos:hover{
+  background-color: rgb(100,222,90);
 }
 
 #gitLink-Home {

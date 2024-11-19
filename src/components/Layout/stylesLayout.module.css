@@ -9,9 +9,9 @@
 }
 
 #content {
-  margin: 6rem 0; 
+  margin: 3rem 0; 
   padding: 0 0 0 4rem;
-  width: 100vw;
+  width: 100%;
   
   z-index: 1;
   transition: margin-left 1s ease; 

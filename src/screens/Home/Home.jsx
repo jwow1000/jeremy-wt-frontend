@@ -1,5 +1,6 @@
 import { fetchPosts, fetchVideos } from "../../services/fetch.js";
 import { useEffect, useState } from "react";
+import Gallery from "../../components/Gallery/Gallery.jsx";
 import "./Home.css";
 
 function Home() {
@@ -22,30 +23,36 @@ function Home() {
     
   }, []);
 
+  const galleryItems = posts.map( (item, idx) => (
+    <div key={idx} className="date">
+      {item.date}
+
+      {
+        
+        item._embedded['wp:featuredmedia'] &&
+          
+          <img src={ item._embedded['wp:featuredmedia'][0].source_url}></img>
+        
+      }
+      
+    </div>
+
+   ));
 
   return (
-    <div id="mainContainer-Home " className="mapIt-layout">
-      POOOP
+    <div id="mainContainer-Home">
+      
+      <div className="gall-cont map-it">
 
-      {  
-       posts.map( (item, idx) => (
-        <div key={idx} className="date">
-          {item.date}
+        <Gallery itemsIn={ galleryItems }/>
+      </div>
 
-          {
-            
-            item._embedded['wp:featuredmedia'] &&
-              
-              <img src={ item._embedded['wp:featuredmedia'][0].source_url}></img>
-            
-          }
-          
-        </div>
+      <div className="gall-cont map-it">
 
-       ))
-         
+        <Gallery itemsIn={ galleryItems }/>
+      </div>
 
-      }
+     
       <div className="imgContainer-Home map-it">
        
       </div>

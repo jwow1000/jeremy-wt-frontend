@@ -33,7 +33,7 @@
   opacity: 100;
 }
 #container {
-  width: 200vw;
+  width: 100%;
   /* padding: 0 0 7rem 0; */
   display: flex;
   flex-flow: row wrap;

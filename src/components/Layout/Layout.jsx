@@ -18,7 +18,6 @@ function Layout({children}) {
     height: 0,
   });
   const contentRef = useRef(null)
-  const scrollPosition = useScrollPosition();
   const location = useLocation();
   
 
@@ -99,7 +98,6 @@ function Layout({children}) {
       
       <NavBar 
         sections={ sections } 
-        scrollPosition={ scrollPosition } 
         totalSize={ totalSize }
         mapState={mapState}
         setMapState={setMapState}

@@ -7,6 +7,7 @@ import styles from "./stylesWPdetail.module.css";
 function WebProjectsDetail() {
   const { slug } = useParams();
   const { dataReady, setDataReady } = useContext(DataReadyContext);
+  const [gallery, setGallery] = useState([]);
   const [postData, setPostData] = useState({});
 
   // const [clickedVideo, setClickedVideo] = useState(null); // Track which video has been clicked
@@ -15,10 +16,13 @@ function WebProjectsDetail() {
     const loadPosts = async () => {
       try {
         const data = await fetchPost( slug );
-        setPostData(data);
+        if( data.length > 0){
+          setPostData( data[0] );
+        }
       } catch (error) {
         console.error("Failed to load posts", error);
       } finally {
+        
         setDataReady(true);
       }
     };
@@ -27,11 +31,29 @@ function WebProjectsDetail() {
     
   }, [slug]);
 
+  // set up the gallery
+  useEffect( () => {
+    if (postData && postData.acf) {
+      let count = 1;
+      while (postData.acf[`detail_${count}`]) {
+        setGallery((prev) => [...prev, postData.acf[`detail_${count}`]]);
+        count++; // Increment the counter to avoid infinite loop
+      }
+      setDataReady(true);
+    }
+  }, [postData]);
   
   
   return (
     <div id={styles.container} >
-      {slug}
+      <h1 id={styles.title}>{postData.acf?.title}</h1>
+      <div id={styles.imgsContainer}>
+        {
+          gallery.forEach((item, idx) => (
+            <img className={styles.imgs} src={item} key={`gallery-${idx}`}></img>
+          ))
+        }
+      </div>  
       
 
     </div>

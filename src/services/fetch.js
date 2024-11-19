@@ -18,7 +18,7 @@ export const getCategoryId = async (slug) => {
 // get a post with id
 export const fetchPost = async ( id ) => {
   try {
-    const response = await api.get(`/posts/${ id }`);
+    const response = await api.get(`/posts/?slug=${ id }`);
     console.log("response data: ", response.data);
     return response.data;
   } catch (error) {

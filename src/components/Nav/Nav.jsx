@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
 import logo from "../../assets/jwy_logo_24.png";
 import MiniMap from "../MiniMap/MiniMap.jsx";
 import styles from './stylesNav.module.css';
 
 
 
-function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoomCount, zoomCount, zoom}) {
+function Nav({sections, totalSize, setMapState, mapState, zoom}) {
+  const scrollPosition = useScrollPosition();
   // the states
   const [showNav, setShowNav] = useState(false);
   const [pathSegments, setPathSegments] = useState( [] );
@@ -26,6 +28,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
 
   useEffect(() => {
     setPathSegments( location.pathname.split('/').filter(Boolean) );
+    console.log("pathsegments", pathSegments)
   },[location]);
   
   // const [ navHeight, setNavHeight ] = useState(0); 
@@ -44,7 +47,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
 
     zoom( bool );
   }
-
+  let accumulatedPath = ''; // This will hold the accumulated segments for breadcrumb
   return (
     <div id={styles.topContainer}>
       {
@@ -146,7 +149,7 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
 
      
       
-      <ul id={styles.breadCrumbs}>
+      <ul id={styles.breadCrumbs} aria-label="breadcrumb">
         <li>
           <NavLink to="/" className={styles.breadcrumbLink}> 
             /<span className={styles.bcBlock}>home</span>
@@ -154,16 +157,21 @@ function Nav({sections, scrollPosition, totalSize, setMapState, mapState, setZoo
         </li>
        
         {
-          pathSegments.map( (segment,idx) => (
-            <li key={`nav-link-${idx}`}>
-              <NavLink 
-                to={`/${segment}`} 
-                className={styles.breadcrumbLink}
-              >
-                /<span className={styles.bcBlock}>{ segment }</span>
-              </NavLink>
-            </li>
-          ))
+          pathSegments.map( (segment,idx) => {
+            // build the path
+            accumulatedPath += `${segment}/`; 
+            console.log("accumulated Path" , segment, accumulatedPath)
+            return (
+              <li key={`nav-link-${idx}`}>
+                <NavLink 
+                  to={`/${ accumulatedPath }`} 
+                  className={styles.breadcrumbLink}
+                >
+                  /<span className={styles.bcBlock}>{ segment }</span>
+                </NavLink>
+              </li>
+            )
+          })
         }
       </ul>
       

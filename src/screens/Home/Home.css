@@ -1,4 +1,5 @@
 #mainContainer-Home {
+  margin: 4rem auto;
   display: flex;
   width: 80%;
   flex-flow: row wrap;
@@ -23,9 +24,15 @@
     margin: 0 auto;
     background-color: white;
 }
-
+#mainLogo {
+  width: 30rem;
+}
 .imgContainer-Home {
     width: 40vw;
+}
+.linkLogos-container {
+  width: 20vw;
+  position: relative;
 }
 .linkLogos {
   width: 20vw;
@@ -33,6 +40,17 @@
 }
 .linkLogos:hover{
   background-color: rgb(100,222,90);
+}
+.linkLogos-explain {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  font-size: 1rem;
+  transition: opacity 0.5s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #gitLink-Home {

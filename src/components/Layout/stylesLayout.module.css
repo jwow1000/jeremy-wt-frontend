@@ -9,8 +9,8 @@
 }
 
 #content {
-  margin: 3rem 0; 
-  padding: 0 0 0 4rem;
+  margin: 0 0; 
+  padding: 0 0 0 0;
   width: 100%;
   
   z-index: 1;
@@ -32,7 +32,6 @@
   #body { 
   }
   #content {
-    padding: 5rem 0 0 4rem;
   }
 
 }

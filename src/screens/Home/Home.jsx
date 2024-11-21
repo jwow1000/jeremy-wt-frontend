@@ -7,11 +7,36 @@ import webPLogo from "../../assets/webportfolio-logo.svg";
 import thingsLogo from "../../assets/things-logo.svg";
 import videosLogo from "../../assets/videos-logo.svg";
 import soundsLogo from "../../assets/sounds-logo.svg";
+import jLogo from "../../assets/jwy_logo_24.svg";
 import "./Home.css";
+
+const links = [
+  {
+    link: "/things",
+    text: "things",
+    img: thingsLogo
+  },
+  {
+    link: "/videos",
+    text: "videos",
+    img: videosLogo
+  },
+  {
+    link: "/sounds",
+    text: "sounds",
+    img: soundsLogo
+  },
+  {
+    link: "/webportfolio",
+    text: "web portfolio",
+    img: webPLogo
+  },
+]
 
 function Home() {
   const { dataReady, setDataReady } = useContext(DataReadyContext);
   const [posts, setPosts] = useState([]); 
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -46,40 +71,40 @@ function Home() {
     </div>
 
    ));
+  function handleHover( idx ) {
+    setHoveredIndex(idx);
+  }
+  function handleLeave() {
+    setHoveredIndex(null); 
+  }
 
   return (
     <div id="mainContainer-Home">
-      <Link to="/things">
-        <img
-          src={thingsLogo}
-          className="linkLogos map-it"
-        />
-      </Link>
-
-      <Link to="/videos">
-        <img
-          src={videosLogo}
-          className="linkLogos map-it"
-        />
-      </Link>
-
-      <Link to="/sounds">
-        <img
-          src={soundsLogo}
-          className="linkLogos map-it"
-        />
-      </Link>
-
-      <Link to="/webportfolio">
-        <img
-          src={webPLogo}
-          className="linkLogos map-it"
-        />
-      </Link>
-
-
+      <img src={jLogo} id="mainLogo"></img>
+      {
+        links.map( (item, idx) => (
+          <Link 
+            className='linkLogos-container map-it'
+            key={`homeLinks-${idx}`}
+            to={item.link} 
+            onMouseEnter={() => handleHover( idx )}
+            onMouseLeave={handleLeave}
+          >
+            <img
+              src={item.img}
+              className="linkLogos"
+            />
+            <div 
+              className='linkLogos-explain'
+              style={{
+                opacity: hoveredIndex === idx ? 1 : 0,
+              }}
+            >{item.text}</div>
+          </Link>
+        ))
+      }
       
-
+      
       <div className="gall-cont map-it">
 
         <Gallery itemsIn={ galleryItems }/>

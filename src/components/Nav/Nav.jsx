@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
 import logo from "../../assets/jwy_logo_24.png";
+import menu from "../../assets/menu-logo.svg";
 import MiniMap from "../MiniMap/MiniMap.jsx";
 import styles from './stylesNav.module.css';
 
@@ -11,6 +12,7 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
   const scrollPosition = useScrollPosition();
   // the states
   const [showNav, setShowNav] = useState(false);
+  const [navTop, setNavTop] = useState(false);
   const [pathSegments, setPathSegments] = useState( [] );
   
   const [ size, setSize ] = useState({
@@ -36,9 +38,11 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
  
   
   function handleClick() {
+    setNavTop( true );
     setShowNav( (value) => !value);
   }
   function handleHomeClick() {
+    setNavTop( false );
     setShowNav( true );
   }
 
@@ -48,8 +52,35 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
     zoom( bool );
   }
   let accumulatedPath = ''; // This will hold the accumulated segments for breadcrumb
+  
   return (
     <div id={styles.topContainer}>
+      <ul id={styles.breadCrumbs} aria-label="breadcrumb">
+        <li>
+          <NavLink to="/" className={styles.breadcrumbLink}> 
+            /<span className={styles.bcBlock}>home</span>
+          </NavLink>
+        </li>
+       
+        {
+          pathSegments.map( (segment,idx) => {
+            // build the path
+            accumulatedPath += `${segment}/`; 
+            console.log("accumulated Path" , segment, accumulatedPath)
+            return (
+              <li key={`nav-link-${idx}`}>
+                <NavLink 
+                  to={`/${ accumulatedPath }`} 
+                  className={styles.breadcrumbLink}
+                >
+                  /<span className={styles.bcBlock}>{ segment }</span>
+                </NavLink>
+              </li>
+            )
+          })
+        }
+      </ul>
+
       {
         mapState &&
           <>
@@ -71,25 +102,33 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
         id={styles.logo}
         onClick={ handleHomeClick}
       /> 
-      <div 
-        onClick={() => handleNavZoom( false )}
-        className={styles.zoomButts}
-        id={styles.zoomOut}
-      >-</div>
 
-      <div 
-        onClick={() => handleNavZoom( true )}
-        className={styles.zoomButts}
-        id={styles.zoomIn}
-      >+</div>
-      
       <div
+        
         id={styles.showNavButton}
         className={styles.zoomButts}
         onClick={ handleClick }
       >
-       𓃑
+        <img src={menu} id={styles.menuImg} alt="show menu button" />
       </div>
+
+      <div
+        className={styles.zoomButtsContainer}
+      >
+        <div 
+          onClick={() => handleNavZoom( true )}
+          className={styles.zoomButts}
+          id={styles.zoomIn}
+        >+</div>
+        <div 
+          onClick={() => handleNavZoom( false )}
+          className={styles.zoomButts}
+          id={styles.zoomOut}
+        >-</div>
+      </div>
+
+      
+      
       
       <div
         className={styles.sideBar}
@@ -149,31 +188,7 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
 
      
       
-      <ul id={styles.breadCrumbs} aria-label="breadcrumb">
-        <li>
-          <NavLink to="/" className={styles.breadcrumbLink}> 
-            /<span className={styles.bcBlock}>home</span>
-          </NavLink>
-        </li>
-       
-        {
-          pathSegments.map( (segment,idx) => {
-            // build the path
-            accumulatedPath += `${segment}/`; 
-            console.log("accumulated Path" , segment, accumulatedPath)
-            return (
-              <li key={`nav-link-${idx}`}>
-                <NavLink 
-                  to={`/${ accumulatedPath }`} 
-                  className={styles.breadcrumbLink}
-                >
-                  /<span className={styles.bcBlock}>{ segment }</span>
-                </NavLink>
-              </li>
-            )
-          })
-        }
-      </ul>
+      
       
       <div 
         id={styles.showMapButton}

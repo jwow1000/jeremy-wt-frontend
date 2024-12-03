@@ -17,13 +17,14 @@
   height: 25rem;
 }
 #bio-Home {
-    display: block;
-    height: 100%;
-    padding: 0.5rem;
-    text-align: center;
-    margin: 0 auto;
-    background-color: white;
+  display: block;
+  height: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  margin: 0 auto;
+  background-color: white;
 }
+
 #mainLogo {
   width: 30rem;
 }
@@ -33,6 +34,7 @@
 .linkLogos-container {
   width: 20vw;
   position: relative;
+  transition: width 0.5s ease, height 0.5s ease, font-size 0.5s ease;
 }
 .linkLogos {
   width: 20vw;
@@ -61,7 +63,6 @@
 
 #gitImg-Home {
     width: 5rem;
-
 }
 
 .img-Home {

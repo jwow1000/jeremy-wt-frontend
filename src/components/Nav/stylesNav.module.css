@@ -22,7 +22,20 @@
   transition: transform 1s ease;
 }
 
+.topBar {
+  height: 5rem;
+  width: 80%;
+  position: absolute;
+  left: 10%;
+  top: 0%;
+  
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-around;
 
+}
 
 #randomLines {
   top: 0;
@@ -30,7 +43,9 @@
 }
 
 #logo {
-  
+  position: absolute;
+  top: 0;
+  left: 0; 
   width: 4rem;
   margin: 1.45rem 0.45rem;
 
@@ -50,6 +65,10 @@
   padding: 0;
   background-color: rgb(255, 147, 214);
   z-index: 1000;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #navBackClick {
@@ -61,26 +80,30 @@
   opacity: 0;
   z-index: 0;
 }
+
+.zoomButtsContainer {
+  width: auto;
+  display: flex;
+  flex-flow: row;
+
+}
 .zoomButts {
   height: 1.5rem;
-  font-size: 1.5rem;
   padding: 0 0.5rem;
+  font-size: 1.5rem;
   line-height: 100%;
-  position: absolute;
-  top: 0%;
   cursor: pointer;
 }
 .zoomButts:hover {
   background-color: aqua;
 }
 #zoomIn {
-  right: 20%;
   cursor: zoom-in;
 }
 #zoomOut {
-  right: 30%;
   cursor: zoom-out;
 }
+
 #mapBackClick {
   position: absolute;
   top: 100%;
@@ -91,12 +114,21 @@
 }
 
 #showNavButton {
-  font-size: 1rem;
-  right: 50%;
-  line-height: 150%;
+  padding: 0 0.8rem;
+  line-height: 100%;
   z-index: 1000;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
 }
-
+#showNavButton:hover {
+  background-color: rgb(215, 97, 255); 
+}
+#menuImg {
+  width: 80%;
+  height: 80%;
+}
 
 
 .navLink {
@@ -120,11 +152,7 @@
 }
 
 #breadCrumbs {
-  position: absolute;
   width: auto;
-  top: 50%;
-  left: 2%;
-  transform: translateY(-50%);
   margin: 0;
   padding: 0;
   font-size: 0.7rem;
@@ -163,10 +191,6 @@
 }
 
 #showMapButton {
-  position: absolute;
-  top: 50%;
-  right: 2%;
-  transform: translateY(-50%);
   font-size: 0.6rem;
   margin: auto 0;
   z-index: 1000;
@@ -174,7 +198,7 @@
 }
 
 #showMapButton:hover {
-  border: solid 1px black;
+  background-color: rgb(215, 97, 255); 
 }
 
 .navLink:hover {
@@ -197,7 +221,6 @@
   }
   .zoomButts {
     height: 2rem;
-    padding: 0rem 2rem;
   } 
 
 
@@ -212,9 +235,6 @@
     font-size: 1.3rem;
   }
 
-  #showNavButton {
-    font-size: 1.3rem;
-  }
 }
 
 /* scale for laptops/PC and large screens */
@@ -245,11 +265,7 @@
     font-size: 1.3rem;
   }
 
-  #showNavButton {
-    font-size: 1.3rem;
-  }
   .zoomButts {
     height: 2rem;
-    padding: 0rem 2rem;
   } 
 }

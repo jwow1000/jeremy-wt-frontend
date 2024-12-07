@@ -5,6 +5,7 @@ import Videos from "./screens/Videos/Videos.jsx";
 import { Routes, Route } from 'react-router-dom';
 import WebProjects from "./screens/WebProjects/WebProjects.jsx";
 import WebProjectsDetail from "./screens/WebProjectDetail/WebProjectsDetail.jsx";
+import Sounds from "./screens/Sounds/Sounds.jsx";
 import { ScrollProvider } from "./hooks/ScrollContext.jsx";
 import stylesApp from "./stylesApp.module.css";
 
@@ -17,6 +18,7 @@ function App() {
           <Routes id='routes-App'>
             <Route path="/" element={<Home />} />
             <Route path="/videos" element={<Videos />} />
+            <Route path="/sounds" element={<Sounds />} />
             <Route path="/webportfolio" element={<WebProjects />} />
             <Route path="/webportfolio/:slug" element={<WebProjectsDetail />} />
             

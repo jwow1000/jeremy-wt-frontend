@@ -1,7 +1,7 @@
 #mainContainer-Home {
   margin: 4rem auto;
   display: flex;
-  width: 80%;
+  width: 90%;
   flex-flow: row wrap;
   justify-content: space-around;
   gap: 1rem;

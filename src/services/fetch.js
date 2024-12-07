@@ -53,9 +53,21 @@ export const fetchVideos = async () => {
   }
 };
 
+// get all sounds, the id is 14
+export const fetchSounds = async () => {
+  try {
+    const response = await api.get("/posts?categories=14&_embed");
+    console.log("sounds response data: ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching the videos category:", error);
+    throw error;
+  }
+};
 
 
-// get all webprojects, the id is 10
+
+// get all webprojects, the id is 12
 export const fetchWebProjects = async () => {
   try {
     const response = await api.get("/posts?categories=12&_embed");

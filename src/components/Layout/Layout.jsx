@@ -2,13 +2,15 @@ import NavBar from "../Nav/Nav.jsx";
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { DataReadyContext } from "../../hooks/dataReadyContext.jsx";
-import { useScrollPosition } from "../../hooks/useUserScreen.jsx";
+import { useScroll } from "../../hooks/ScrollContext.jsx";
+import 'simplebar-react/dist/simplebar.min.css';
 import styles from "./stylesLayout.module.css";
 import { parseSizeToPixels } from "../../services/conversions.js";
 
 
 
 function Layout({children}) {
+  const { contentRef } = useScroll();
   const { dataReady, setDataReady } = useContext(DataReadyContext);
   const [sections, setSections] = useState([]);
   const [mapState, setMapState] = useState(false);
@@ -17,9 +19,15 @@ function Layout({children}) {
     width: 0,
     height: 0,
   });
-  const contentRef = useRef(null)
+  // const contentRef = useRef(null)
   const location = useLocation();
   
+  function handleMapBack(event) {
+    console.log("did clcik")
+    if( mapState && event.target.className != 'mini-map-section' ) {
+      setMapState(false)
+    }
+  } 
 
   useEffect(() => {
     setDataReady(false);
@@ -94,11 +102,13 @@ function Layout({children}) {
   return (
     <div 
       id={styles.layout}
+      onClick={handleMapBack}
     >
       
       <NavBar 
         sections={ sections } 
         totalSize={ totalSize }
+        handleMapBack={handleMapBack}
         mapState={mapState}
         setMapState={setMapState}
         id={styles.navbar}
@@ -107,13 +117,11 @@ function Layout({children}) {
         zoom={zoom}
         
       />
-
       
       <div 
         id={styles.content}
         ref={ contentRef }
         className="mapIt-layout"
-        
       >
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
@@ -122,7 +130,7 @@ function Layout({children}) {
         )}
         {/* { children } */}
       </div>
-      
+    
       
 
     </div>

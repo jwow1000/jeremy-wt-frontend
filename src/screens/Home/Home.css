@@ -28,6 +28,18 @@
 #mainLogo {
   width: 30rem;
 }
+#logoWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#bioWrapper {
+  width: 30rem;
+}
+#bioWrapper:hover{
+  background-color: rgb(100,222,90);
+}
 .imgContainer-Home {
     width: 40vw;
 }

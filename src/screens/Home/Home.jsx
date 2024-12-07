@@ -80,7 +80,12 @@ function Home() {
 
   return (
     <div id="mainContainer-Home">
-      <img src={jLogo} id="mainLogo"></img>
+      <div id="logoWrapper">
+        <img src={jLogo} id="mainLogo"></img>
+      </div>
+      <div id="bioWrapper">
+        Jeremy Wiles-Young is an artist and software engineer working with installation and sound. based in NYC. 
+      </div>
       {
         links.map( (item, idx) => (
           <Link 
@@ -103,19 +108,6 @@ function Home() {
           </Link>
         ))
       }
-      
-      
-      <div className="gall-cont map-it">
-
-        <Gallery itemsIn={ galleryItems }/>
-      </div>
-
-      <div className="gall-cont map-it">
-
-        <Gallery itemsIn={ galleryItems }/>
-      </div>
-
-     
       
     </div>
   

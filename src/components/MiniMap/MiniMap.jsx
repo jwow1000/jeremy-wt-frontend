@@ -1,12 +1,16 @@
+import { useState, useEffect } from "react";
 import { useScrollPosition, useWindowSize } from "../../hooks/useUserScreen.jsx";
+import { useScroll } from "../../hooks/ScrollContext.jsx";
 import { parseSizeToPixels } from "../../services/conversions.js";
 import "./MiniMap.css"; 
 
 function MiniMap({ sections, totalSize, setMapState, mapState }) {
   
+  const { scrollPosition } = useScroll();
+  const { contentRef } = useScroll();
   
   // Calculate the height of each section relative to the viewport
-  const scrollPos = useScrollPosition();
+ 
   const viewSize = useWindowSize();
   // console.log("sections: ", sections, "total size: ", totalSize)
 
@@ -52,8 +56,8 @@ function MiniMap({ sections, totalSize, setMapState, mapState }) {
               onClick={() => {
                 const centerX = sectionLeft - (viewSize.width / 2) + (sectionWidth / 2);
                 const centerY = sectionTop - ( (viewSize.height / 2) - parseSizeToPixels("2rem")) + (sectionHeight / 2);
-              
-                window.scrollTo({ 
+                console.log("scroll to: ", centerX, centerY);
+                contentRef.current.scrollTo({ 
                   top: centerY, 
                   left: centerX,
                   behavior: 'smooth' 
@@ -70,8 +74,8 @@ function MiniMap({ sections, totalSize, setMapState, mapState }) {
           style={{
             width: `${( viewSize.width / totalSize.width ) * 100}%`,
             height: `${( viewSize.height / totalSize.height ) * 100}%`,
-            left: `${( scrollPos.x / totalSize.width) * 100}%`,
-            top: `${( scrollPos.y / totalSize.height) * 100}%`,
+            left: `${( scrollPosition.x / totalSize.width) * 100}%`,
+            top: `${( scrollPosition.y / totalSize.height) * 100}%`,
           }}
         >
 

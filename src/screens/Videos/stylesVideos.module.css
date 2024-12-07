@@ -1,6 +1,7 @@
 #container {
   width: 200vw;
-  /* padding: 0 0 7rem 0; */
+  /* half of the largest item's width and height */
+  margin: 7rem 45vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;

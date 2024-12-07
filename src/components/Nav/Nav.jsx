@@ -8,7 +8,7 @@ import styles from './stylesNav.module.css';
 
 
 
-function Nav({sections, totalSize, setMapState, mapState, zoom}) {
+function Nav({sections, totalSize, handleMapBack, zoom, mapState, setMapState}) {
   const scrollPosition = useScrollPosition();
   // the states
   const [showNav, setShowNav] = useState(false);
@@ -47,14 +47,16 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
   }
 
   function handleNavZoom( bool ) {
-   
-
     zoom( bool );
   }
+ 
   let accumulatedPath = ''; // This will hold the accumulated segments for breadcrumb
   
   return (
-    <div id={styles.topContainer}>
+    <div 
+      id={styles.topContainer}
+     
+    >
       <ul id={styles.breadCrumbs} aria-label="breadcrumb">
         <li>
           <NavLink to="/" className={styles.breadcrumbLink}> 
@@ -66,7 +68,7 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
           pathSegments.map( (segment,idx) => {
             // build the path
             accumulatedPath += `${segment}/`; 
-            console.log("accumulated Path" , segment, accumulatedPath)
+            // console.log("accumulated Path" , segment, accumulatedPath)
             return (
               <li key={`nav-link-${idx}`}>
                 <NavLink 
@@ -93,7 +95,6 @@ function Nav({sections, totalSize, setMapState, mapState, zoom}) {
             />
             <div 
               id={styles.mapBackClick}
-              onClick={ () => setMapState(false) }
             ></div>
           </>
       }

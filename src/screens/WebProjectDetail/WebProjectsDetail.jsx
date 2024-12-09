@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { DataReadyContext } from '../../hooks/dataReadyContext.jsx';
 import { fetchPost } from '../../services/fetch.js';
+import Gallery from '../../components/Gallery/Gallery.jsx';
 import styles from "./stylesWPdetail.module.css";
 
 function WebProjectsDetail() {
@@ -18,11 +19,11 @@ function WebProjectsDetail() {
         const data = await fetchPost( slug );
         if( data.length > 0){
           setPostData( data[0] );
+          console.log("postData: ", postData);
         }
       } catch (error) {
-        console.error("Failed to load posts", error);
+        console.error("Failed to load post", error);
       } finally {
-        
         setDataReady(true);
       }
     };
@@ -30,29 +31,31 @@ function WebProjectsDetail() {
     loadPosts();
     
   }, [slug]);
-
   // set up the gallery
   useEffect( () => {
-    if (postData && postData.acf) {
+    if (postData.acf) {
+      const galleryItems = [];
       let count = 1;
       while (postData.acf[`detail_${count}`]) {
-        setGallery((prev) => [...prev, postData.acf[`detail_${count}`]]);
-        count++; // Increment the counter to avoid infinite loop
+        const img = postData.acf[`detail_${count}`];
+        galleryItems.push(
+          <img className={styles.imgs} src={img.url} key={`gallery-${count}`} />
+        );
+        count++;
       }
+      setGallery(galleryItems); // Update state once
       setDataReady(true);
     }
+   
   }, [postData]);
   
   
   return (
-    <div id={styles.container} >
+    <div className={styles.container} >
       <h1 id={styles.title}>{postData.acf?.title}</h1>
+      <h2 id={styles.description}>{postData.acf?.description}</h2>
       <div id={styles.imgsContainer}>
-        {
-          gallery.forEach((item, idx) => (
-            <img className={styles.imgs} src={item} key={`gallery-${idx}`}></img>
-          ))
-        }
+        <Gallery itemsIn={gallery}/>
       </div>  
       
 

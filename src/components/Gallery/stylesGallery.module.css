@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border: 1px solid black;
 }
 .leftClick {
   position: absolute;
@@ -28,11 +29,9 @@
 }
 .hoverLeft:hover {
   cursor: w-resize;
-
 }
 .hoverRight:hover {
   cursor: e-resize;
-
 }
 
 .buttons {
@@ -43,7 +42,7 @@
   line-height: 100%;
   transform: translateY(-50%);
   cursor: pointer;
-  z-index: 100;
+  z-index: 1;
   user-select: none;
 }
 .buttons:hover {

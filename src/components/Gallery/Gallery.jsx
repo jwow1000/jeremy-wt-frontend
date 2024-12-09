@@ -12,8 +12,8 @@ function Gallery({ itemsIn }) {
 
   useEffect(() => {
     setItems( itemsIn );
-    setItemAmt( itemsIn.length );
-
+    setItemAmt( items.length );
+    console.log("gallery items: ", items)
   }, [itemsIn]);
   
   function handleFocusToggle() {

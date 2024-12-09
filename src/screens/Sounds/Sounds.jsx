@@ -5,14 +5,10 @@ import styles from "./stylesSounds.module.css";
 import appStyles from "../../stylesApp.module.css"
 
 
-
-
-
 function Sounds( props ) {
 
   const { dataReady, setDataReady } = useContext(DataReadyContext);
   const [sounds, setSounds] = useState([]); 
-  const [clickedVideo, setClickedVideo] = useState(null); // Track which video has been clicked
 
   useEffect(() => {
     console.log("whaaaaat: ", props)

@@ -39,6 +39,16 @@ export const fetchPosts = async () => {
   }
 };
 
+// get all posts with things(objects in the wordpress CMS) as parent, the id is 2
+export const fetchThings = async () => {
+  try {
+    const response = await api.get("/posts?categories=2&_embed");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching the videos category:", error);
+    throw error;
+  }
+};
 
 
 // get all videos, the id is 10

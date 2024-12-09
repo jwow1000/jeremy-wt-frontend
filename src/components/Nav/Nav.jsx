@@ -55,8 +55,8 @@ function Nav({sections, totalSize, handleMapBack, zoom, mapState, setMapState}) 
   return (
     <div 
       id={styles.topContainer}
-     
     >
+      
       <ul id={styles.breadCrumbs} aria-label="breadcrumb">
         <li>
           <NavLink to="/" className={styles.breadcrumbLink}> 
@@ -98,11 +98,7 @@ function Nav({sections, totalSize, handleMapBack, zoom, mapState, setMapState}) 
             ></div>
           </>
       }
-      <img
-        src={logo}
-        id={styles.logo}
-        onClick={ handleHomeClick}
-      /> 
+      
 
       <div
         
@@ -127,9 +123,6 @@ function Nav({sections, totalSize, handleMapBack, zoom, mapState, setMapState}) 
           id={styles.zoomOut}
         >-</div>
       </div>
-
-      
-      
       
       <div
         className={styles.sideBar}
@@ -197,6 +190,12 @@ function Nav({sections, totalSize, handleMapBack, zoom, mapState, setMapState}) 
       > show map 
       </div>
       
+      <img
+        src={logo}
+        id={styles.logo}
+        onClick={ handleHomeClick }
+      />  
+
     </div>
   )
 }

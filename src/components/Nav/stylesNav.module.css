@@ -43,10 +43,9 @@
 
 #logo {
   position: absolute;
-  top: 0;
-  left: 0; 
-  width: 4rem;
-  margin: 1.45rem 0.45rem;
+  top: 100%;
+  width: 3rem;
+  margin: 0.2rem 0.15rem;
 
 }
 
@@ -58,7 +57,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 1.5rem;
+  height: auto;
+  min-height: 1.5rem;
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -214,11 +214,11 @@
   }
 
   #topContainer {
-    height: 2rem;
+    min-height: 2rem;
   }
   #logo {
     width: 4rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
   .zoomButts {
     height: 2rem;
@@ -245,12 +245,12 @@
   }
 
   #topContainer {
-    height: 2rem;
+    min-height: 2rem;
   }
 
   #logo {
     width: 4rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .navLink {

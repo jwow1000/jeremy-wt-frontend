@@ -58,6 +58,19 @@ export function parseSizeToPixels(sizeStr) {
 }
 
 // // Example usage
-// console.log(parseSizeToPixels("20rem")); // Converts to pixels based on the root font size
+// console.log(parseSizeToPixels("20rem")); // Converts to  pixels based on the root font size
 // console.log(parseSizeToPixels("50px"));  // 50
 // console.log(parseSizeToPixels("0.5em")); // Converts to pixels based on the parent font size
+const ids = {
+  11: "Sculptures",
+  2: "Objects",
+  15: "Sound Sculptures",
+  13: "Prints",
+  8: "Fabric Works",
+  7: "Installations",
+
+}
+
+export function categoryIdToName( id ) {
+  return ids[id];
+}

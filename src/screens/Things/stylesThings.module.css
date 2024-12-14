@@ -1,9 +1,70 @@
 #container {
   width: 200vw;
-  /* padding: 0 0 7rem 0; */
+  padding: 7rem 29vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 10vw;
   overflow: auto;
+}
+
+.thingWrapper {
+  width: 40vw;
+  height: 50vw;
+  display: flex;
+  flex-flow: column;
+  background-color: rgba(200,150,150,0.7);
+  padding: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgb(0, 0, 0); 
+  transition: width 0.5s ease, height 0.5s ease, font-size 0.5s ease;
+}
+
+.thingWrapper:visited {
+  color: rgb(38, 106, 196);
+}
+
+.thingData {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+.title {
+  text-align: left;
+}
+.year {
+  text-align: right;
+}
+.categories {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;  
+  gap: 0.5rem;
+  margin: 0;
+}
+.category {
+  margin: 0;
+  text-align: center;
+}
+
+.thingImageWrapper {
+  width: 100%;
+  height: 80%;
+  flex: 1 1 auto;
+  
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.thingImage {
+  width: 100%; 
+  height: 100%;
+  object-fit: contain; 
 }

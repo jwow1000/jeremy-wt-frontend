@@ -7,6 +7,7 @@ import WebProjects from "./screens/WebProjects/WebProjects.jsx";
 import WebProjectsDetail from "./screens/WebProjectDetail/WebProjectsDetail.jsx";
 import Sounds from "./screens/Sounds/Sounds.jsx";
 import Things from "./screens/Things/Things.jsx";
+import ThingDetail from "./screens/ThingDetail/ThingDetail.jsx";
 import { ScrollProvider } from "./hooks/ScrollContext.jsx";
 import stylesApp from "./stylesApp.module.css";
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/things" element={<Things />} />
             <Route path="/webportfolio" element={<WebProjects />} />
             <Route path="/webportfolio/:slug" element={<WebProjectsDetail />} />
+            <Route path="/things/:slug" element={<ThingDetail />} />
             
           </Routes>
         </Layout>

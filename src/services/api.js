@@ -1,7 +1,8 @@
 // src/api.js
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL || import.meta.env.VITE_LOCAL_URL;
+console.log("hodywd", import.meta.env.VITE_LOCAL_URL, BASE_URL)
 const username = import.meta.env.VITE_LOGIN_NAME;
 const password = import.meta.env.VITE_LOGIN_PASS;
 

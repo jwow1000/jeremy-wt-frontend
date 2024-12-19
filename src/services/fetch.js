@@ -54,7 +54,7 @@ export const fetchThings = async () => {
 // get all videos, the id is 10
 export const fetchVideos = async () => {
   try {
-    const response = await api.get("/posts?categories=10&_embed");
+    const response = await api.get("/posts?categories=5&_embed");
     console.log("videos response data: ", response.data);
     return response.data;
   } catch (error) {
@@ -80,7 +80,7 @@ export const fetchSounds = async () => {
 // get all webprojects, the id is 12
 export const fetchWebProjects = async () => {
   try {
-    const response = await api.get("/posts?categories=12&_embed");
+    const response = await api.get("/posts?categories=6&_embed");
     console.log("videos response data: ", response.data);
     return response.data;
   } catch (error) {

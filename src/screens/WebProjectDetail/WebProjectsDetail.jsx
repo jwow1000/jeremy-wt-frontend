@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { DataReadyContext } from '../../hooks/dataReadyContext.jsx';
-import { fetchPost } from '../../services/fetch.js';
+import { fetchPostSlug } from '../../services/fetch.js';
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import styles from "./stylesWPdetail.module.css";
 
@@ -16,7 +16,7 @@ function WebProjectsDetail() {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const data = await fetchPost( slug );
+        const data = await fetchPostSlug( slug );
         if( data.length > 0){
           setPostData( data[0] );
           console.log("postData: ", postData);

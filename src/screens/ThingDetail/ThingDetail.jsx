@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { DataReadyContext } from '../../hooks/dataReadyContext.jsx';
-import { fetchPost } from '../../services/fetch.js';
+import { fetchPostSlug } from '../../services/fetch.js';
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import styles from "./stylesThingDetail.module.css";
 
@@ -16,10 +16,10 @@ function ThingDetail() {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const data = await fetchPost( slug );
+        const data = await fetchPostSlug( slug );
+        console.log( "the possst", data[0])
         if( data.length > 0){
           setPostData( data[0] );
-          console.log("postData: ", postData);
         }
       } catch (error) {
         console.error("Failed to load post", error);

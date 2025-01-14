@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataReadyContext } from '../../hooks/dataReadyContext.jsx';
-import { fetchPosts,getCategoryId } from "../../services/fetch.js";
+import { fetchPosts,getAllCategoryId } from "../../services/fetch.js";
 import webPLogo from "../../assets/webportfolio-logo.svg";
 import thingsLogo from "../../assets/things-logo.svg";
 import videosLogo from "../../assets/videos-logo.svg";
@@ -41,6 +41,11 @@ function Home() {
   useEffect(() => {
     const loadPosts = async () => {
       try {
+        const seeIds = await getAllCategoryId();
+        console.log("sound: ", seeIds);
+
+
+
         const data = await fetchPosts();
         setPosts(data);
       } catch (error) {

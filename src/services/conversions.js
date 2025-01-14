@@ -62,15 +62,29 @@ export function parseSizeToPixels(sizeStr) {
 // console.log(parseSizeToPixels("50px"));  // 50
 // console.log(parseSizeToPixels("0.5em")); // Converts to pixels based on the parent font size
 const ids = {
-  11: "Sculptures",
-  2: "Objects",
-  15: "Sound Sculptures",
-  13: "Prints",
-  8: "Fabric Works",
-  7: "Installations",
+  3: "Sculpture",
+  2: "Object",
+  8: "Sound Sculpture",
+  11: "Print",
+  9: "Fabric Work",
+  10: "Installation",
+  12: "Radio Show",
+  4: "Sound",
+  5: "Video",
 
 }
 
 export function categoryIdToName( id ) {
   return ids[id];
+}
+
+// Function to get the ID from the name (slug)
+export function categoryNameToId(slug) {
+  // Reverse the ids object for quick lookup
+  const reversedIds = Object.entries(ids).reduce((acc, [key, value]) => {
+    acc[value] = parseInt(key, 10); // Convert keys to integers
+    return acc;
+  }, {});
+
+  return reversedIds[slug];
 }

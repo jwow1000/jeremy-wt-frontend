@@ -15,10 +15,25 @@ export const getCategoryId = async (slug) => {
   }
 };
 
-// get a post with id
-export const fetchPost = async ( id ) => {
+// utility fetch to see category ids, use for dev only
+export const getAllCategoryId = async () => {
   try {
-    const response = await api.get(`/posts/?slug=${ id }`);
+    const response = await api.get(`/categories?_fields=id,slug,name,acf`);
+    if (response.data.length > 0) {
+      return response.data; // Return the category ID
+    } else {
+      throw new Error(`Categories not found.`);
+    }
+  } catch (error) {
+    console.error("Error fetching category ID:", error);
+    throw error;
+  }
+};
+
+// get a post with id
+export const fetchPostId = async ( id ) => {
+  try {
+    const response = await api.get(`/posts/?id=${ id }`);
     console.log("response data: ", response.data);
     return response.data;
   } catch (error) {
@@ -26,6 +41,18 @@ export const fetchPost = async ( id ) => {
     throw error;
   }
 };
+
+// get a post with slug
+export const fetchPostSlug = async ( slug ) => {
+  try {
+    const response = await api.get(`/posts/?slug=${ slug }`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    throw error;
+  }
+};
+
 
 // get all posts with picture
 export const fetchPosts = async () => {
